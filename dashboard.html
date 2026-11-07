@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <title>Dashboard | CodeForSimples Exam Portal</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/dashboard.css" />
+  </head>
+  <body class="dashboard-page">
+    <header class="topbar dashboard-topbar">
+      <a class="brand-wrap" href="./dashboard.html" aria-label="CodeForSimples dashboard">
+        <span class="brand-badge small">CFS</span>
+        <h1>CodeForSimples <span>Exam Portal</span></h1>
+      </a>
+      <div class="profile-actions">
+        <div id="networkStatus" class="network-status" role="status">Connecting</div>
+        <div class="profile-meta">
+          <span id="studentName">Loading profile</span>
+          <small id="studentEmail"></small>
+        </div>
+        <button id="logoutButton" class="secondary-button" type="button">Sign out</button>
+      </div>
+    </header>
+
+    <main class="dashboard-shell">
+      <section class="welcome-banner">
+        <div>
+          <p class="eyebrow">Student workspace</p>
+          <h2>Welcome back, <span id="welcomeName">there</span></h2>
+          <p>Your next step toward mastering Python and data analytics.</p>
+        </div>
+        <div class="welcome-decoration" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </section>
+
+      <section class="dashboard-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow accent">Your next step</p>
+            <h2>Available examination</h2>
+          </div>
+          <span class="section-count">01 domain</span>
+        </div>
+        <article class="domain-card">
+          <div class="domain-icon" aria-hidden="true">Py</div>
+          <div class="domain-copy">
+            <span class="domain-tag">Three-phase assessment</span>
+            <h3>Python + Data Analytics</h3>
+            <p>Python fundamentals, practical coding, and data reasoning in one focused examination.</p>
+            <div class="exam-facts">
+              <span>20 MCQs</span><span>2 coding tasks</span><span>5 oral responses</span>
+            </div>
+          </div>
+          <div class="domain-action">
+            <span id="attemptState" class="attempt-state">Checking attempt...</span>
+            <button id="domainCard" class="primary-button" type="button" disabled>Loading...</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="dashboard-section history-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow accent">Your progress</p>
+            <h2>Previous examination</h2>
+          </div>
+        </div>
+        <article id="historyCard" class="history-card">
+          <div id="historyEmpty" class="empty-state">
+            <span class="empty-icon" aria-hidden="true">01</span>
+            <div><h3>No examination history yet</h3><p>Your result will appear here after your first attempt.</p></div>
+          </div>
+          <div id="historyResult" class="history-result hidden">
+            <div class="history-copy">
+              <span id="historyStatus" class="status-pill">Completed</span>
+              <h3>Python + Data Analytics</h3>
+              <p id="historyDate">Submitted —</p>
+            </div>
+            <div class="history-score">
+              <div id="historyRing" class="mini-ring"><span id="historyPercentage">0%</span></div>
+              <span>Final percentage</span>
+            </div>
+            <button id="viewResultButton" class="secondary-button" type="button">View result</button>
+          </div>
+        </article>
+      </section>
+      <p id="profileMessage" class="form-message error" aria-live="polite"></p>
+    </main>
+
+    <script type="module" src="./js/dashboard.js"></script>
+  </body>
+</html>

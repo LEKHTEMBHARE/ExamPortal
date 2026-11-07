@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | CodeForSimples Exam Portal</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/login.css" />
+  </head>
+  <body class="auth-page">
+    <div class="auth-layout">
+      <aside class="auth-visual">
+        <div class="brand-lockup">
+          <div class="brand-badge">CFS</div>
+          <div>
+            <p class="eyebrow">Assessment Platform</p>
+            <h1>CodeForSimples</h1>
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="stat-row">
+            <span>Assessment Format</span>
+            <strong>3 focused phases</strong>
+          </div>
+          <div class="stat-row">
+            <span>Automatic Saving</span>
+            <strong>Every response</strong>
+          </div>
+          <div class="stat-row">
+            <span>Exam Domains</span>
+            <strong>Python + Data Analytics</strong>
+          </div>
+        </div>
+      </aside>
+
+      <main class="auth-card">
+        <div class="card-inner">
+          <p class="eyebrow accent">Student &amp; Admin Access</p>
+          <h2 id="authHeading">Welcome Back!</h2>
+          <p id="authSubtitle" class="subtitle">Sign in to continue your examination.</p>
+
+          <form id="loginForm" novalidate>
+            <div id="studentNameField" class="field-group hidden">
+              <label for="studentNameInput">Full name</label>
+              <input id="studentNameInput" name="name" type="text" placeholder="Your full name" autocomplete="name" maxlength="120" />
+            </div>
+            <div class="field-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+            </div>
+
+            <div class="field-group password-wrap">
+              <label for="password">Password</label>
+              <div class="password-shell">
+                <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" minlength="6" required />
+                <button type="button" id="togglePassword" class="password-toggle" aria-label="Show password">Show</button>
+              </div>
+            </div>
+
+            <button id="loginButton" class="primary-button" type="submit">
+              <span class="button-text">Login</span>
+              <span class="spinner hidden" aria-hidden="true"></span>
+            </button>
+
+            <p id="loginMessage" class="form-message" aria-live="polite"></p>
+          </form>
+          <button id="authModeButton" class="auth-mode-button" type="button">New student? Create an account</button>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="./js/auth.js"></script>
+  </body>
+</html>

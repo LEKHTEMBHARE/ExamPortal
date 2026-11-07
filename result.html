@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Result | CodeForSimples Exam Portal</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/result.css" />
+  </head>
+  <body class="result-page">
+    <main class="result-shell">
+      <header class="result-header">
+        <div class="brand-wrap">
+          <span class="brand-badge small">CFS</span>
+          <h1>CodeForSimples Exam Portal</h1>
+        </div>
+      </header>
+
+      <section class="result-card">
+        <p class="eyebrow accent">Examination Result</p>
+        <h2 id="studentNameResult">Student Name</h2>
+        <p class="exam-name">Python + Data Analytics</p>
+        <p id="resultStatus" class="status-pill">Loading result…</p>
+
+        <div class="score-ring-wrap">
+          <div class="score-ring" id="scoreRing">
+            <div class="score-ring-inner">
+              <span id="finalPercentage">—%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-meta">
+          <span>Final Percentage:</span>
+          <strong id="percentageText">—%</strong>
+        </div>
+        <p id="resultSubmittedAt" class="result-submitted"></p>
+        <a class="primary-button result-dashboard-link" href="./dashboard.html">Return to dashboard</a>
+        <p id="resultMessage" class="form-message error" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script type="module" src="./js/result.js"></script>
+  </body>
+</html>

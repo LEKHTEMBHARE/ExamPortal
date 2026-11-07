@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Examination | CodeForSimples Exam Portal</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/exam.css" />
+  </head>
+  <body class="exam-page">
+    <header class="topbar exam-topbar">
+      <div class="brand-wrap">
+        <span class="brand-badge small">CFS</span>
+        <h1>CodeForSimples Exam Portal</h1>
+      </div>
+      <div class="exam-header-meta">
+        <div id="networkStatus" class="network-status" role="status">Connecting</div>
+        <div class="timer-box">
+          <span>Time Left</span>
+          <strong id="timerDisplay">10:00</strong>
+        </div>
+        <div class="phase-box">
+          <span>Phase</span>
+          <strong id="phaseBadge">Instructions</strong>
+        </div>
+      </div>
+    </header>
+
+    <main class="exam-shell">
+      <section id="instructionsView" class="panel card exam-instructions active">
+        <div class="section-header">
+          <p class="eyebrow accent">Before You Begin</p>
+          <h2>Examination Rules & Security</h2>
+        </div>
+
+        <ul class="rules-list">
+          <li>Stay on this examination page and do not switch tabs or windows. Leaving this page will terminate and submit your attempt.</li>
+        </ul>
+        <div class="exam-overview"><span>Phase 1 · 20 MCQs · 10 min</span><span>Phase 2 · 2 coding tasks · 10 min</span><span>Phase 3 · 5 oral responses</span></div>
+
+        <div class="start-controls">
+          <button id="startExamButton" class="primary-button" type="button">Start Examination</button>
+        </div>
+      </section>
+
+      <section id="examView" class="panel exam-area hidden">
+        <div class="exam-layout">
+          <aside class="question-sidebar">
+            <div class="sidebar-header">
+              <h3>Question Palette</h3>
+            </div>
+            <div id="questionNav" class="question-nav"></div>
+          </aside>
+
+          <div class="question-panel">
+            <div class="question-topbar">
+              <div>
+                <p id="phaseLabel" class="phase-label">Phase 1</p>
+                <h3 id="questionHeader">Question 1</h3>
+              </div>
+              <span id="statusBadge" class="status-badge">Pending</span>
+            </div>
+
+            <div id="questionContent" class="question-content"></div>
+            <div id="answerContainer" class="answer-container"></div>
+
+            <div class="question-actions">
+              <button id="previousButton" class="secondary-button" type="button">Previous</button>
+              <button id="nextButton" class="secondary-button" type="button">Next</button>
+              <button id="continueButton" class="primary-button" type="button" disabled>Continue to Phase 2</button>
+            </div>
+            <p id="saveStatus" class="save-status" aria-live="polite">Answers save automatically</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+    <dialog id="submitDialog" class="confirm-dialog">
+      <form method="dialog">
+        <p class="eyebrow accent">Final Check</p>
+        <h2>Submit your examination?</h2>
+        <p>Once submitted, your attempt is locked and cannot be changed.</p>
+        <div class="dialog-actions">
+          <button class="secondary-button" value="cancel">Keep working</button>
+          <button id="confirmSubmitButton" class="primary-button" value="submit">Submit examination</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="./js/exam.js"></script>
+  </body>
+</html>

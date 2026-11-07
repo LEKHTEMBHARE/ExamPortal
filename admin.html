@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <title>Admin Dashboard | CodeForSimples Exam Portal</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/admin.css" />
+  </head>
+  <body class="admin-page">
+    <header class="topbar admin-topbar">
+      <a class="brand-wrap" href="./admin.html" aria-label="Admin dashboard">
+        <span class="brand-badge small">CFS</span>
+        <h1>CodeForSimples <span>Admin</span></h1>
+      </a>
+      <div class="profile-actions">
+        <div id="networkStatus" class="network-status" role="status">Connecting</div>
+        <span class="admin-identity">Administrator · <strong id="adminEmail">Loading</strong></span>
+        <button id="refreshButton" class="secondary-button" type="button">Refresh results</button>
+        <button id="logoutButton" class="secondary-button" type="button">Sign out</button>
+      </div>
+    </header>
+
+    <main class="admin-shell">
+      <section class="admin-heading">
+        <div><p class="eyebrow accent">Overview</p><h2>Examination analytics</h2><p>Monitor student participation and results.</p></div>
+        <span id="updatedAt" class="updated-label">Not refreshed yet</span>
+      </section>
+
+      <section class="metric-grid" aria-label="Examination metrics">
+        <article class="metric-card"><span class="metric-icon blue">ST</span><p>Registered students</p><strong id="totalStudents">—</strong></article>
+        <article class="metric-card"><span class="metric-icon violet">AT</span><p>Total attempts</p><strong id="totalAttempts">—</strong></article>
+        <article class="metric-card"><span class="metric-icon green">OK</span><p>Completed</p><strong id="completedExams">—</strong></article>
+        <article class="metric-card"><span class="metric-icon amber">!</span><p>Terminated</p><strong id="terminatedExams">—</strong></article>
+      </section>
+
+      <section class="results-panel">
+        <div class="results-heading">
+          <div><p class="eyebrow accent">Student records</p><h2>Examination results</h2></div>
+          <span id="resultCount" class="section-count">0 results</span>
+        </div>
+        <div class="table-controls">
+          <label class="search-field"><span class="sr-only">Search students</span><input id="studentSearch" type="search" placeholder="Search name or email" /></label>
+          <label class="filter-field"><span class="sr-only">Filter by status</span><select id="statusFilter"><option value="all">All statuses</option><option value="not_attempted">Not attempted</option><option value="in_progress">In progress</option><option value="completed">Completed</option><option value="terminated">Terminated</option></select></label>
+          <label class="filter-field"><span class="sr-only">Sort by percentage</span><select id="sortResults"><option value="date-desc">Newest first</option><option value="percentage-desc">Highest score</option><option value="percentage-asc">Lowest score</option></select></label>
+        </div>
+        <div id="adminMessage" class="inline-message" role="status"></div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Student</th><th>Exam domain</th><th>Status</th><th>Marks</th><th>Percentage</th><th>Submission date</th><th><span class="sr-only">Actions</span></th></tr></thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+        </div>
+        <div id="emptyResults" class="empty-state hidden"><span class="empty-icon">—</span><div><h3>No matching results</h3><p>Try changing your search or filters.</p></div></div>
+      </section>
+    </main>
+
+    <dialog id="studentResultDialog" class="confirm-dialog result-dialog">
+      <form method="dialog">
+        <button class="dialog-close" aria-label="Close result details" value="close">×</button>
+        <p class="eyebrow accent">Student examination</p>
+        <h2 id="detailStudentName">Student</h2>
+        <p id="detailStudentEmail" class="detail-email"></p>
+        <div class="detail-score"><span id="detailPercentage">—%</span><small>Final percentage</small></div>
+        <dl class="detail-list"><div><dt>Exam</dt><dd id="detailExam">Python + Data Analytics</dd></div><div><dt>Status</dt><dd id="detailStatus">—</dd></div><div><dt>Total marks</dt><dd id="detailMarks">—</dd></div><div><dt>Phase marks (MCQ / coding / oral)</dt><dd id="detailBreakdown">—</dd></div><div><dt>Submitted</dt><dd id="detailDate">—</dd></div><div><dt>Termination reason</dt><dd id="detailReason">—</dd></div></dl>
+        <section class="detail-answers" aria-labelledby="detailAnswersHeading">
+          <h3 id="detailAnswersHeading">Saved answers</h3>
+          <div id="detailAnswers"></div>
+        </section>
+        <button class="secondary-button dialog-done" value="close">Close details</button>
+      </form>
+    </dialog>
+    <script type="module" src="./js/admin.js"></script>
+  </body>
+</html>

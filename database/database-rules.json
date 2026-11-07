@@ -1,0 +1,127 @@
+{
+    "rules":  {
+                  ".read":  false,
+                  ".write":  false,
+                  "users":  {
+                                ".read":  "auth != null \u0026\u0026 (auth.uid == \u0027NdSGmG2MwbPob3us17UbXidZglW2\u0027 \u0026\u0026 auth.token.email == \u0027lala@gmail.com\u0027 \u0026\u0026 root.child(\u0027users/\u0027 + auth.uid + \u0027/role\u0027).val() == \u0027admin\u0027)",
+                                "$uid":  {
+                                             ".read":  "auth != null \u0026\u0026 (auth.uid == $uid || (auth.uid == \u0027NdSGmG2MwbPob3us17UbXidZglW2\u0027 \u0026\u0026 auth.token.email == \u0027lala@gmail.com\u0027 \u0026\u0026 root.child(\u0027users/\u0027 + auth.uid + \u0027/role\u0027).val() == \u0027admin\u0027))",
+                                             ".write":  "auth != null \u0026\u0026 auth.uid == $uid \u0026\u0026 newData.exists() \u0026\u0026 newData.child(\u0027uid\u0027).val() == auth.uid \u0026\u0026 newData.child(\u0027email\u0027).val() == auth.token.email \u0026\u0026 ((auth.uid == \u0027NdSGmG2MwbPob3us17UbXidZglW2\u0027 \u0026\u0026 auth.token.email == \u0027lala@gmail.com\u0027 \u0026\u0026 data.child(\u0027role\u0027).val() == \u0027admin\u0027 \u0026\u0026 newData.child(\u0027role\u0027).val() == \u0027admin\u0027) || (auth.uid != \u0027NdSGmG2MwbPob3us17UbXidZglW2\u0027 \u0026\u0026 newData.child(\u0027role\u0027).val() == \u0027student\u0027))",
+                                             ".validate":  "newData.hasChildren([\u0027uid\u0027, \u0027name\u0027, \u0027email\u0027, \u0027role\u0027, \u0027examDomain\u0027, \u0027createdAt\u0027])",
+                                             "uid":  {
+                                                         ".validate":  "newData.isString() \u0026\u0026 newData.val() == auth.uid"
+                                                     },
+                                             "name":  {
+                                                          ".validate":  "newData.isString() \u0026\u0026 newData.val().length \u003e 0 \u0026\u0026 newData.val().length \u003c= 120"
+                                                      },
+                                             "email":  {
+                                                           ".validate":  "newData.isString() \u0026\u0026 newData.val() == auth.token.email"
+                                                       },
+                                             "role":  {
+                                                          ".validate":  "((auth.uid == \u0027NdSGmG2MwbPob3us17UbXidZglW2\u0027 \u0026\u0026 auth.token.email == \u0027lala@gmail.com\u0027 \u0026\u0026 data.val() == \u0027admin\u0027) ? newData.val() == \u0027admin\u0027 : (auth.uid != \u0027NdSGmG2MwbPob3us17UbXidZglW2\u0027 \u0026\u0026 newData.val() == \u0027student\u0027))"
+                                                      },
+                                             "examDomain":  {
+                                                                ".validate":  "newData.val() == \u0027Python + Data Analytics\u0027"
+                                                            },
+                                             "createdAt":  {
+                                                               ".validate":  "newData.isNumber() \u0026\u0026 newData.val() \u003e 0"
+                                                           },
+                                             "$other":  {
+                                                            ".validate":  false
+                                                        }
+                                         }
+                            },
+                  "attempts":  {
+                                   ".read":  "auth != null \u0026\u0026 (auth.uid == \u0027NdSGmG2MwbPob3us17UbXidZglW2\u0027 \u0026\u0026 auth.token.email == \u0027lala@gmail.com\u0027 \u0026\u0026 root.child(\u0027users/\u0027 + auth.uid + \u0027/role\u0027).val() == \u0027admin\u0027)",
+                                   "$uid":  {
+                                                ".read":  "auth != null \u0026\u0026 (auth.uid == $uid || (auth.uid == \u0027NdSGmG2MwbPob3us17UbXidZglW2\u0027 \u0026\u0026 auth.token.email == \u0027lala@gmail.com\u0027 \u0026\u0026 root.child(\u0027users/\u0027 + auth.uid + \u0027/role\u0027).val() == \u0027admin\u0027))",
+                                                ".write":  "auth != null \u0026\u0026 auth.uid == $uid \u0026\u0026 newData.exists() \u0026\u0026 newData.child(\u0027uid\u0027).val() == auth.uid \u0026\u0026 newData.child(\u0027attemptId\u0027).val() == auth.uid \u0026\u0026 newData.child(\u0027email\u0027).val() == auth.token.email \u0026\u0026 newData.child(\u0027examId\u0027).val() == \u0027python-data-analytics\u0027 \u0026\u0026 ((!data.exists() \u0026\u0026 newData.child(\u0027status\u0027).val() == \u0027in_progress\u0027) || (data.exists() \u0026\u0026 data.child(\u0027status\u0027).val() == \u0027in_progress\u0027 \u0026\u0026 newData.child(\u0027startedAt\u0027).val() == data.child(\u0027startedAt\u0027).val() \u0026\u0026 newData.child(\u0027studentName\u0027).val() == data.child(\u0027studentName\u0027).val() \u0026\u0026 newData.child(\u0027examDomain\u0027).val() == data.child(\u0027examDomain\u0027).val() \u0026\u0026 newData.child(\u0027currentPhase\u0027).val() \u003e= data.child(\u0027currentPhase\u0027).val() \u0026\u0026 newData.child(\u0027currentPhase\u0027).val() \u003c= data.child(\u0027currentPhase\u0027).val() + 1 \u0026\u0026 (newData.child(\u0027status\u0027).val() != \u0027completed\u0027 || newData.child(\u0027terminationReason\u0027).val() == \u0027time-expired\u0027 || (newData.child(\u0027currentPhase\u0027).val() == 3 \u0026\u0026 newData.child(\u0027oralAnswers\u0027).child(\u00270\u0027).val().length \u003e 0 \u0026\u0026 newData.child(\u0027oralAnswers\u0027).child(\u00271\u0027).val().length \u003e 0 \u0026\u0026 newData.child(\u0027oralAnswers\u0027).child(\u00272\u0027).val().length \u003e 0 \u0026\u0026 newData.child(\u0027oralAnswers\u0027).child(\u00273\u0027).val().length \u003e 0 \u0026\u0026 newData.child(\u0027oralAnswers\u0027).child(\u00274\u0027).val().length \u003e 0))))",
+                                                ".validate":  "newData.hasChildren([\u0027uid\u0027, \u0027studentName\u0027, \u0027email\u0027, \u0027examId\u0027, \u0027examDomain\u0027, \u0027startedAt\u0027, \u0027currentPhase\u0027, \u0027phaseStartedAt\u0027, \u0027phaseDurationSeconds\u0027, \u0027mcqAnswers\u0027, \u0027codingAnswers\u0027, \u0027oralAnswers\u0027, \u0027status\u0027]) \u0026\u0026 (newData.child(\u0027currentPhase\u0027).val() \u003c 2 || (newData.child(\u0027mcqAnswers\u0027).child(\u00270\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u00271\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u00272\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u00273\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u00274\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u00275\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u00276\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u00277\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u00278\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u00279\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u002710\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u002711\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u002712\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u002713\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u002714\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u002715\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u002716\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u002717\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u002718\u0027).val() \u003e= 0 \u0026\u0026 newData.child(\u0027mcqAnswers\u0027).child(\u002719\u0027).val() \u003e= 0) \u0026\u0026 (newData.child(\u0027currentPhase\u0027).val() \u003c 3 || (newData.child(\u0027codingAnswers\u0027).child(\u00270\u0027).val().length \u003e 0 \u0026\u0026 newData.child(\u0027codingAnswers\u0027).child(\u00271\u0027).val().length \u003e 0)) \u0026\u0026 (newData.child(\u0027status\u0027).val() != \u0027completed\u0027 || newData.child(\u0027terminationReason\u0027).val() == \u0027time-expired\u0027 || (newData.child(\u0027currentPhase\u0027).val() == 3 \u0026\u0026 newData.child(\u0027oralAnswers\u0027).child(\u00270\u0027).val().length \u003e 0 \u0026\u0026 newData.child(\u0027oralAnswers\u0027).child(\u00271\u0027).val().length \u003e 0 \u0026\u0026 newData.child(\u0027oralAnswers\u0027).child(\u00272\u0027).val().length \u003e 0 \u0026\u0026 newData.child(\u0027oralAnswers\u0027).child(\u00273\u0027).val().length \u003e 0 \u0026\u0026 newData.child(\u0027oralAnswers\u0027).child(\u00274\u0027).val().length \u003e 0)) \u0026\u0026 (newData.child(\u0027status\u0027).val() == \u0027in_progress\u0027 ? (!newData.child(\u0027result\u0027).exists() \u0026\u0026 !newData.child(\u0027percentage\u0027).exists() \u0026\u0026 !newData.child(\u0027breakdown\u0027).exists() \u0026\u0026 !newData.child(\u0027completedAt\u0027).exists()) : (newData.child(\u0027completedAt\u0027).isNumber() \u0026\u0026 newData.child(\u0027result\u0027).isNumber() \u0026\u0026 newData.child(\u0027percentage\u0027).isNumber() \u0026\u0026 newData.child(\u0027breakdown\u0027).hasChildren([\u0027mcq\u0027, \u0027coding\u0027, \u0027oral\u0027]) \u0026\u0026 newData.child(\u0027result\u0027).val() == newData.child(\u0027breakdown\u0027).child(\u0027mcq\u0027).val() + newData.child(\u0027breakdown\u0027).child(\u0027coding\u0027).val() + newData.child(\u0027breakdown\u0027).child(\u0027oral\u0027).val() \u0026\u0026 newData.child(\u0027percentage\u0027).val() == newData.child(\u0027result\u0027).val() \u0026\u0026 (newData.child(\u0027status\u0027).val() != \u0027completed\u0027 || newData.child(\u0027terminationReason\u0027).val() == \u0027time-expired\u0027 || newData.child(\u0027currentPhase\u0027).val() == 3))))",
+                                                "uid":  {
+                                                            ".validate":  "newData.isString() \u0026\u0026 newData.val() == auth.uid"
+                                                        },
+                                                "attemptId":  {
+                                                                  ".validate":  "newData.isString() \u0026\u0026 newData.val() == auth.uid"
+                                                              },
+                                                "studentName":  {
+                                                                    ".validate":  "newData.isString() \u0026\u0026 newData.val().length \u003e 0 \u0026\u0026 newData.val().length \u003c= 120"
+                                                                },
+                                                "email":  {
+                                                              ".validate":  "newData.isString() \u0026\u0026 newData.val() == auth.token.email"
+                                                          },
+                                                "examId":  {
+                                                               ".validate":  "newData.val() == \u0027python-data-analytics\u0027"
+                                                           },
+                                                "examDomain":  {
+                                                                   ".validate":  "newData.val() == \u0027Python + Data Analytics\u0027"
+                                                               },
+                                                "startedAt":  {
+                                                                  ".validate":  "newData.isNumber() \u0026\u0026 newData.val() \u003e 0"
+                                                              },
+                                                "completedAt":  {
+                                                                    ".validate":  "!newData.exists() || newData.isNumber()"
+                                                                },
+                                                "currentPhase":  {
+                                                                     ".validate":  "newData.isNumber() \u0026\u0026 newData.val() \u003e= 1 \u0026\u0026 newData.val() \u003c= 3"
+                                                                 },
+                                                "phaseStartedAt":  {
+                                                                       ".validate":  "newData.isNumber() \u0026\u0026 newData.val() \u003e 0"
+                                                                   },
+                                                "phaseDurationSeconds":  {
+                                                                             ".validate":  "newData.isNumber() \u0026\u0026 newData.val() == 600"
+                                                                         },
+                                                "mcqAnswers":  {
+                                                                   ".validate":  "newData.hasChildren([\u00270\u0027, \u00271\u0027, \u00272\u0027, \u00273\u0027, \u00274\u0027, \u00275\u0027, \u00276\u0027, \u00277\u0027, \u00278\u0027, \u00279\u0027, \u002710\u0027, \u002711\u0027, \u002712\u0027, \u002713\u0027, \u002714\u0027, \u002715\u0027, \u002716\u0027, \u002717\u0027, \u002718\u0027, \u002719\u0027])",
+                                                                   "$index":  {
+                                                                                  ".validate":  "$index.matches(/^(0|[1-9]|1[0-9])$/) \u0026\u0026 newData.isNumber() \u0026\u0026 newData.val() \u003e= -1 \u0026\u0026 newData.val() \u003c= 3"
+                                                                              }
+                                                               },
+                                                "codingAnswers":  {
+                                                                      ".validate":  "newData.hasChildren([\u00270\u0027, \u00271\u0027])",
+                                                                      "$index":  {
+                                                                                     ".validate":  "$index.matches(/^[0-1]$/) \u0026\u0026 newData.isString() \u0026\u0026 newData.val().length \u003c= 12000"
+                                                                                 }
+                                                                  },
+                                                "oralAnswers":  {
+                                                                    ".validate":  "newData.hasChildren([\u00270\u0027, \u00271\u0027, \u00272\u0027, \u00273\u0027, \u00274\u0027])",
+                                                                    "$index":  {
+                                                                                   ".validate":  "$index.matches(/^[0-4]$/) \u0026\u0026 newData.isString() \u0026\u0026 newData.val().length \u003c= 12000"
+                                                                               }
+                                                                },
+                                                "status":  {
+                                                               ".validate":  "newData.val() == \u0027in_progress\u0027 || newData.val() == \u0027completed\u0027 || newData.val() == \u0027terminated\u0027"
+                                                           },
+                                                "terminationReason":  {
+                                                                          ".validate":  "!newData.exists() || newData.val() == \u0027tab-switch\u0027 || newData.val() == \u0027time-expired\u0027"
+                                                                      },
+                                                "result":  {
+                                                               ".validate":  "!newData.exists() || (newData.isNumber() \u0026\u0026 newData.val() \u003e= 0 \u0026\u0026 newData.val() \u003c= 100)"
+                                                           },
+                                                "percentage":  {
+                                                                   ".validate":  "!newData.exists() || (newData.isNumber() \u0026\u0026 newData.val() \u003e= 0 \u0026\u0026 newData.val() \u003c= 100)"
+                                                               },
+                                                "breakdown":  {
+                                                                  ".validate":  "!newData.exists() || newData.hasChildren([\u0027mcq\u0027, \u0027coding\u0027, \u0027oral\u0027])",
+                                                                  "mcq":  {
+                                                                              ".validate":  "newData.isNumber() \u0026\u0026 newData.val() \u003e= 0 \u0026\u0026 newData.val() \u003c= 40"
+                                                                          },
+                                                                  "coding":  {
+                                                                                 ".validate":  "newData.isNumber() \u0026\u0026 newData.val() \u003e= 0 \u0026\u0026 newData.val() \u003c= 40"
+                                                                             },
+                                                                  "oral":  {
+                                                                               ".validate":  "newData.isNumber() \u0026\u0026 newData.val() \u003e= 0 \u0026\u0026 newData.val() \u003c= 20"
+                                                                           },
+                                                                  "$other":  {
+                                                                                 ".validate":  false
+                                                                             }
+                                                              },
+                                                "scoreVersion":  {
+                                                                     ".validate":  "!newData.exists() || newData.isNumber()"
+                                                                 },
+                                                "$other":  {
+                                                               ".validate":  false
+                                                           }
+                                            }
+                               }
+              }
+}
